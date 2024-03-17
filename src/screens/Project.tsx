@@ -17,7 +17,7 @@ const Project: React.FC = () => {
     const {classes} = useStyles();
     const navigate = useNavigate();
 
-    const {users} = useApiStates("users")
+    const {users,} = useApiStates("users");
 
     return (
         <>
@@ -28,6 +28,9 @@ const Project: React.FC = () => {
             </Button>
             <Typography>
                 {users.value}
+            </Typography>
+            <Typography>
+                {users.valueNumber}
             </Typography>
         </>
     );

@@ -7,11 +7,13 @@ type StoreData = {
 };
 
 const useApiStates = <T extends AllowedStoreNames[]>(...storeNames: T): StoreData => {
-    const storeData = useAppSelector((state) => state) as StoreData;
-    const result: StoreData = {} as StoreData;
+    const result = {} as StoreData;
+    const selector = useAppSelector;
+
     storeNames.forEach(storeName => {
-        result[storeName] = storeData[storeName];
+        result[storeName as T[number]] = selector((state) => state[storeName]) as StoreData[T[number]];
     });
+
     return result;
 };
 

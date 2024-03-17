@@ -4,17 +4,19 @@ import {RootDispatch, RootState} from "../Store";
 
 interface State {
     value: string | undefined,
-
+    valueNumber: number
 }
 
 const reduceAddUser = (draft: Draft<State>, action: PayloadAction<string>) => {
     draft.value = action.payload;
+    draft.valueNumber = 2
 };
 
 const slice = createSlice({
     name: "Users",
     initialState: {
-        value: undefined
+        value: undefined,
+        valueNumber: 1
     } as State,
     reducers: {
         "USER": reduceAddUser
