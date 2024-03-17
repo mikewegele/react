@@ -8,6 +8,8 @@ export const rootReducer = combineReducers({
     users: UsersSlice.reducer
 });
 
+export type RootState = ReturnType<typeof rootReducer>
+
 export const ClearStore = {
     type: "Root:Clear"
 };
@@ -24,7 +26,6 @@ export const store = configureStore({
     }
 });
 
-export type RootState = ReturnType<typeof rootReducer>
 export type RootDispatch = typeof store.dispatch;
 
 export const useAppDispatch = useDispatch.withTypes<RootDispatch>()
