@@ -1,8 +1,6 @@
 import {RootState, useAppSelector} from "../store/Store";
 
-const a = "users"
-
-type AllowedStoreNames = typeof a | "projects";
+type AllowedStoreNames = "users" | "projects";
 type StoreData = { [key in AllowedStoreNames]: RootState[key] };
 
 const useApiStates = <T extends AllowedStoreNames[]>(...storeNames: T): StoreData => {
