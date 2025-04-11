@@ -1,14 +1,20 @@
-import {RootState, useAppSelector} from "../store/Store";
+import { RootState, useAppSelector } from "../store/Store";
 
-type AllowedStoreNames = "users" | "projects";
-type StoreData = { [key in AllowedStoreNames]: RootState[key] };
+type AllowedStoreNames = keyof RootState;
 
-const useApiStates = <T extends AllowedStoreNames[]>(...storeNames: T): StoreData => {
-    const result = {} as StoreData;
+type UniqueStoreNames<K extends AllowedStoreNames> = K;
+
+const useApiStates = <K extends AllowedStoreNames>(
+    ...storeNames: [UniqueStoreNames<K>, UniqueStoreNames<K>] | [UniqueStoreNames<K>]
+): { [P in K]: RootState[P] } => {
     const selector = useAppSelector;
-    storeNames.forEach(storeName => {
-        result[storeName as T[number]] = selector((state) => state[storeName]) as StoreData[T[number]];
+
+    const result = {} as { [P in K]: RootState[P] };
+
+    storeNames.forEach((name) => {
+        result[name] = selector((state) => state[name]) as RootState[typeof name];
     });
+
     return result;
 };
 
