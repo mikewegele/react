@@ -1,10 +1,10 @@
 import React from "react";
 import {Button, Typography} from "@mui/material";
 import {useNavigate} from "react-router";
-import {tss} from "tss-react/mui";
-import useApiStates from "../util/UseApiStates";
+import useApiStates from "../util/useApiStates";
+import makeStyles from "../util/makeStyles";
 
-const useStyles = tss.create(() => ({
+const useStyles = makeStyles(() => ({
     button: {
         color: "white",
         font: "18px bold",
