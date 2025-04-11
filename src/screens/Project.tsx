@@ -17,7 +17,7 @@ const Project: React.FC = () => {
     const {classes} = useStyles();
     const navigate = useNavigate();
 
-    const { users } = useApiStates("users");
+    const {users} = useApiStates("users");
 
     return (
         <>
